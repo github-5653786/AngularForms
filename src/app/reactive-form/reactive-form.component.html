@@ -1,0 +1,30 @@
+<div class="container">
+    <h2> Reactive Form Validation </h2>
+    <form [formGroup]="form" #frmname="ngForm" (ngSubmit)=" form.valid && login()">
+        <div class="form-group">
+            <label for="username">User Name</label>
+            <input type="text" formControlName="username" class="form-control"/>
+            <div *ngIf="form.controls.username.invalid && frmname.submitted">
+                <div *ngIf="form.controls.username.errors.required" class="error">
+                    Email Required.
+                </div>
+                <div *ngIf="form.controls.username.errors.pattern" class="error">
+                    Patter mismatch
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" formControlName="password" class="form-control">
+            <div *ngIf="form.controls.password.invalid && frmname.submitted">
+                <div *ngIf="form.controls.password.errors.required" class="error">
+                    This Field is Required.
+                </div>
+                <div *ngIf="form.controls.password.errors.maxlength" class="error">
+                    Enter 15 charactor only
+                </div>
+            </div>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Submit" />
+    </form>
+</div>
